@@ -5,6 +5,10 @@ public class Settings extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
+    private JTextField intermechLicenseMonitorURLTextField;
+    private JTextField searchRunCommandTextField;
+    private JSpinner queryIntervalSSpinner;
+    private JCheckBox storeConfigInRegisterCheckBox;
 
     public Settings() {
         setContentPane(contentPane);
@@ -54,5 +58,9 @@ public class Settings extends JDialog {
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }

@@ -2,7 +2,7 @@ import javax.swing.*;
 
 public class Form1 {
     private JPanel panel1;
-    private JTextField httpSearchsrv8990TextField;
+    private JTextField intermechLicenseMonitorURLTextField;
     private JTextField cIMSearchS4TextField;
     private JSpinner queryIntervalTextField;
     private JCheckBox settingsInRegistryCheckBox;
