@@ -7,13 +7,20 @@ public class Settings extends JDialog {
     private JButton buttonCancel;
     private JTextField intermechLicenseMonitorURLTextField;
     private JTextField searchRunCommandTextField;
-    private JSpinner queryIntervalSSpinner;
+    private JSpinner queryIntervalSpinner;
     private JCheckBox storeConfigInRegisterCheckBox;
 
     public Settings() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
+        setResizable(false);
+        setTitle("Search Launcher settings");
+
+        intermechLicenseMonitorURLTextField.setText(SearchLauncherConfig.getSearchLicenseServerURL());
+        searchRunCommandTextField.setText(SearchLauncherConfig.getSearchStartCommand());
+        queryIntervalSpinner.setModel(new SpinnerNumberModel(SearchLauncherConfig.getLicenseQueryDelay(), 1, 180, 1));
+        storeConfigInRegisterCheckBox.setSelected(SearchLauncherConfig.isStoreConfigInRegister());
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -41,10 +48,19 @@ public class Settings extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+
+        pack();
+        setLocationRelativeTo(null);
+        buttonOK.requestFocus();
+        setVisible(true);
     }
 
     private void onOK() {
         // add your code here
+        SearchLauncherConfig.setConfig(intermechLicenseMonitorURLTextField.getText(),
+                searchRunCommandTextField.getText(),
+                Integer.parseInt(queryIntervalSpinner.getValue().toString()),
+                storeConfigInRegisterCheckBox.isSelected());
         dispose();
     }
 
@@ -53,14 +69,16 @@ public class Settings extends JDialog {
         dispose();
     }
 
-    public static void main(String[] args) {
-        Settings dialog = new Settings();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
-    }
+//    public static void main(String[] args) {
+//        Settings dialog = new Settings();
+//        dialog.pack();
+//        dialog.setLocation(500, 500);
+//        dialog.setVisible(true);
+//        System.out.println("La");
+//        System.exit(0);
+//    }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
+//    private void createUIComponents() {
+//        // TODO: place custom component creation code here
+//    }
 }

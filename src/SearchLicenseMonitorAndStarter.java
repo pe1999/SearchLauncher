@@ -20,7 +20,7 @@ public class SearchLicenseMonitorAndStarter extends Thread {
                     a = outputLine.indexOf("<td>", a) + 4;
                 }
 
-                sleep(SearchLauncherConfig.getLicenceQueryDelay() * 1000);
+                sleep(SearchLauncherConfig.getLicenseQueryDelay() * 1000);
 
                 System.out.println(Integer.parseInt(outputLine.substring(a, outputLine.indexOf("</td>", a))));
 

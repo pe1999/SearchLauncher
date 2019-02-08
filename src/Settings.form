@@ -127,7 +127,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="cf090" class="javax.swing.JSpinner" binding="queryIntervalSSpinner" default-binding="true">
+              <component id="cf090" class="javax.swing.JSpinner" binding="queryIntervalSpinner">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <maximum-size width="50" height="-1"/>

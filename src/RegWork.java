@@ -1,4 +1,3 @@
-import com.sun.deploy.association.utility.WinRegistryUtil;
 import com.sun.deploy.association.utility.WinRegistryWrapper;
 
 public class RegWork {
@@ -17,7 +16,7 @@ public class RegWork {
         //SearchLauncherConfig.deleteConfigFromRegistry();
         System.out.println(SearchLauncherConfig.getSearchLicenseServerURL());
         System.out.println(SearchLauncherConfig.getSearchStartCommand());
-        System.out.println(SearchLauncherConfig.getLicenceQueryDelay());
+        System.out.println(SearchLauncherConfig.getLicenseQueryDelay());
 
     }
 }
