@@ -68,17 +68,4 @@ public class Settings extends JDialog {
         // add your code here if necessary
         dispose();
     }
-
-//    public static void main(String[] args) {
-//        Settings dialog = new Settings();
-//        dialog.pack();
-//        dialog.setLocation(500, 500);
-//        dialog.setVisible(true);
-//        System.out.println("La");
-//        System.exit(0);
-//    }
-
-//    private void createUIComponents() {
-//        // TODO: place custom component creation code here
-//    }
 }

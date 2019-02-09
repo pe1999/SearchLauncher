@@ -7,9 +7,9 @@ public class Main {
 
     static final String DEFAULT_SEARCH_LICENSE_SERVER_URL = "http://searchsrv:8990/";
     static final String DEFAULT_SEARCH_COMMAND = "C:\\IM\\Search\\s4.exe";
-    static final int DEFAULT_LICENSE_QUERY_DELAY = 1;
+    static final int DEFAULT_LICENSE_QUERY_DELAY = 10;
 
-    static final String REGISTRY_KEY = "SOFTWARE\\Search Launcher";
+    static final String REGISTRY_KEY = /*"SOFTWARE\\*/"Search Launcher";
     static final String SEARCH_LICENSE_SERVER_URL_REG_PARAM_NAME = "SearchLicenseServerURL";
     static final String SEARCH_COMMAND_REG_PARAM_NAME = "SearchStartCommand";
     static final String LICENSE_QUERY_DELAY_REG_PARAM_NAME = "LicenceQueryDelay";
@@ -32,18 +32,7 @@ public class Main {
                 setTrayIcon();
             }
         });
-        //System.out.println("The end!");
     }
-
-//    private static void createGUI() {
-//        JFrame frame = new JFrame(APPLICATION_NAME);
-//        frame.setMinimumSize(new Dimension(300, 200));
-//        frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-//        frame.pack();
-//        frame.setVisible(true);
-//
-//        setTrayIcon();
-//    }
 
     private static void setTrayIcon() {
         if (!SystemTray.isSupported()) {
