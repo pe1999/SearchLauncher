@@ -10,12 +10,12 @@ public class Settings extends JDialog {
     private JSpinner queryIntervalSpinner;
     private JCheckBox storeConfigInRegisterCheckBox;
 
-    public Settings() {
+    Settings() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
         setResizable(false);
-        setTitle("Search Launcher settings");
+        setTitle(Main.APPLICATION_NAME + " settings");
 
         intermechLicenseMonitorURLTextField.setText(SearchLauncherConfig.getSearchLicenseServerURL());
         searchRunCommandTextField.setText(SearchLauncherConfig.getSearchStartCommand());
