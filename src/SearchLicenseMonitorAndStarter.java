@@ -21,7 +21,7 @@ public class SearchLicenseMonitorAndStarter extends Thread {
             while(getFreeSearchLicenses() == 0) {
                 sleep(SearchLauncherConfig.getLicenseQueryDelay() * 1000);
             }
-            Runtime.getRuntime().exec(SearchLauncherConfig.getSearchStartCommand());
+            Runtime.getRuntime().exec("cmd /c \"" + SearchLauncherConfig.getSearchStartCommand() + "\"");
             Main.searchLicenseMonitorAndStarterStop();
 
         } catch (InterruptedException e) {
