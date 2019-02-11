@@ -3,7 +3,7 @@
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
-public class SearchLauncherConfig {
+class SearchLauncherConfig {
     private static String searchLicenseServerURL;
     private static String searchStartCommand;
     private static int licenseQueryDelay; // in seconds
@@ -34,7 +34,7 @@ public class SearchLauncherConfig {
         }
     }
 
-    public static void setConfig(String searchLicenseServerURL, String searchStartCommand, int licenceQueryDelay, boolean storeConfigInRegister) {
+    static void setConfig(String searchLicenseServerURL, String searchStartCommand, int licenceQueryDelay, boolean storeConfigInRegister) {
         SearchLauncherConfig.searchLicenseServerURL = searchLicenseServerURL;
         SearchLauncherConfig.searchStartCommand = searchStartCommand;
         SearchLauncherConfig.licenseQueryDelay = licenceQueryDelay;
@@ -44,7 +44,7 @@ public class SearchLauncherConfig {
             deleteConfigFromRegistry();
     }
 
-    public static void deleteConfigFromRegistry() {
+    private static void deleteConfigFromRegistry() {
 //        WinRegistryWrapper.WinRegDeleteKey(WinRegistryWrapper.HKEY_CURRENT_USER, Main.REGISTRY_KEY);
         try {
             Preferences.userRoot().node(Main.REGISTRY_KEY).removeNode();
@@ -54,7 +54,7 @@ public class SearchLauncherConfig {
         storeConfigInRegister = false;
     }
 
-    public static void writeConfigToRegistry() {
+    private static void writeConfigToRegistry() {
 //        WinRegistryWrapper.WinRegCreateKeyEx(WinRegistryWrapper.HKEY_CURRENT_USER, Main.REGISTRY_KEY);
 //        WinRegistryWrapper.WinRegSetValueEx(WinRegistryWrapper.HKEY_CURRENT_USER, Main.REGISTRY_KEY, Main.SEARCH_LICENSE_SERVER_URL_REG_PARAM_NAME, searchLicenseServerURL);
 //        WinRegistryWrapper.WinRegSetValueEx(WinRegistryWrapper.HKEY_CURRENT_USER, Main.REGISTRY_KEY, Main.SEARCH_COMMAND_REG_PARAM_NAME, searchStartCommand);
@@ -67,19 +67,19 @@ public class SearchLauncherConfig {
         storeConfigInRegister = true;
     }
 
-    public static String getSearchLicenseServerURL() {
+    static String getSearchLicenseServerURL() {
         return searchLicenseServerURL;
     }
 
-    public static String getSearchStartCommand() {
+    static String getSearchStartCommand() {
         return searchStartCommand;
     }
 
-    public static int getLicenseQueryDelay() {
+    static int getLicenseQueryDelay() {
         return licenseQueryDelay;
     }
 
-    public static boolean isStoreConfigInRegister() {
+    static boolean isStoreConfigInRegister() {
         return storeConfigInRegister;
     }
 }
