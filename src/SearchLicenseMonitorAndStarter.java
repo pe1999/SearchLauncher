@@ -28,7 +28,7 @@ public class SearchLicenseMonitorAndStarter extends Thread {
             //System.out.println("In InterruptedException catch");
         } catch (Exception e) {
             e.printStackTrace();
-            System.exit(1);
+            //System.exit(1);
         }
     }
 
