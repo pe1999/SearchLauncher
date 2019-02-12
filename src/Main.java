@@ -5,19 +5,19 @@ import java.awt.event.ActionListener;
 
 public class Main {
 
+    static final String APPLICATION_NAME = "Search Launcher";
+
+    private static final String APPLICATION_START_MESSAGE = "Search Launcher started!";
+    private static final String ICON_STR = "resources/Icon.png";
+
     static final String DEFAULT_SEARCH_LICENSE_SERVER_URL = "http://searchsrv:8990/";
     static final String DEFAULT_SEARCH_COMMAND =            "C:\\IM\\Search\\s4.exe";
     static final int    DEFAULT_LICENSE_QUERY_DELAY =       10;
 
-    static final String REGISTRY_KEY = /*"SOFTWARE\\*/             "Search Launcher";
+    static final String REGISTRY_KEY = /*"SOFTWARE\\*/             APPLICATION_NAME;
     static final String SEARCH_LICENSE_SERVER_URL_REG_PARAM_NAME = "SearchLicenseServerURL";
     static final String SEARCH_COMMAND_REG_PARAM_NAME =            "SearchStartCommand";
     static final String LICENSE_QUERY_DELAY_REG_PARAM_NAME =       "LicenceQueryDelay";
-
-    static final String APPLICATION_NAME = "Search Launcher";
-
-    private static final String APPLICATION_START_MESSAGE = "Search Launcher started!";
-    private static final String ICON_STR =                  "/resources/Icon.png";
 
     private static SearchLicenseMonitorAndStarter searchLicenseMonitorAndStarter;
     private static boolean isSearchLicenseMonitorAndStarterRun = false;
