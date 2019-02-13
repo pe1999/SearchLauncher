@@ -34,11 +34,16 @@ class SearchLauncherConfig {
         }
     }
 
-    static void setConfig(String searchLicenseServerURL, String searchStartCommand, int licenceQueryDelay, boolean storeConfigInRegister) {
+    static void setConfigParameters(String searchLicenseServerURL, String searchStartCommand, int licenceQueryDelay, boolean storeConfigInRegister) {
         SearchLauncherConfig.searchLicenseServerURL = searchLicenseServerURL;
         SearchLauncherConfig.searchStartCommand = searchStartCommand;
         SearchLauncherConfig.licenseQueryDelay = licenceQueryDelay;
-        if (SearchLauncherConfig.storeConfigInRegister = storeConfigInRegister)
+        SearchLauncherConfig.storeConfigInRegister = storeConfigInRegister;
+    }
+
+    static void setConfig(String searchLicenseServerURL, String searchStartCommand, int licenceQueryDelay, boolean storeConfigInRegister) {
+        setConfigParameters(searchLicenseServerURL, searchStartCommand, licenceQueryDelay, storeConfigInRegister);
+        if (storeConfigInRegister)
             writeConfigToRegistry();
         else
             deleteConfigFromRegistry();

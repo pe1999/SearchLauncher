@@ -19,7 +19,10 @@ public class Settings extends JDialog {
 
         intermechLicenseMonitorURLTextField.setText(SearchLauncherConfig.getSearchLicenseServerURL());
         searchRunCommandTextField.setText(SearchLauncherConfig.getSearchStartCommand());
-        queryIntervalSpinner.setModel(new SpinnerNumberModel(SearchLauncherConfig.getLicenseQueryDelay(), 1, 180, 1));
+        queryIntervalSpinner.setModel(new SpinnerNumberModel(SearchLauncherConfig.getLicenseQueryDelay(),
+                                                             Main.MIN_LICENSE_QUERY_DELAY,
+                                                             Main.MAX_LICENSE_QUERY_DELAY,
+                                                             1));
         storeConfigInRegisterCheckBox.setSelected(SearchLauncherConfig.isStoreConfigInRegister());
 
         buttonOK.addActionListener(new ActionListener() {

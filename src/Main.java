@@ -13,6 +13,8 @@ public class Main {
     static final String DEFAULT_SEARCH_LICENSE_SERVER_URL = "http://searchsrv:8990/";
     static final String DEFAULT_SEARCH_COMMAND =            "C:\\IM\\Search\\s4.exe";
     static final int    DEFAULT_LICENSE_QUERY_DELAY =       10;
+    static final int    MIN_LICENSE_QUERY_DELAY =           1;
+    static final int    MAX_LICENSE_QUERY_DELAY =           180;
 
     static final String REGISTRY_KEY = /*"SOFTWARE\\*/             APPLICATION_NAME;
     static final String SEARCH_LICENSE_SERVER_URL_REG_PARAM_NAME = "SearchLicenseServerURL";
@@ -23,6 +25,56 @@ public class Main {
     private static boolean isSearchLicenseMonitorAndStarterRun = false;
 
     public static void main(String[] args) {
+
+        String  searchLicenseServerURL = SearchLauncherConfig.getSearchLicenseServerURL();
+        String  searchStartCommand =     SearchLauncherConfig.getSearchStartCommand();
+        int     licenceQueryDelay =      SearchLauncherConfig.getLicenseQueryDelay();
+
+        boolean isConfigParametersPresent = false;
+        boolean isStoreParameterPresent = false;
+        boolean isStartParameterPresent = false;
+
+        for (String string : args) {
+            String[] arg = string.split("=");
+            switch (arg[0].toLowerCase()) {
+                case "start":
+                    isStartParameterPresent = true;
+                    break;
+                case "url":
+                    searchLicenseServerURL = arg[1];
+                    isConfigParametersPresent = true;
+                    break;
+                case "cmd":
+                    searchStartCommand = arg[1];
+                    isConfigParametersPresent = true;
+                    break;
+                case "qi":
+                    try {
+                        licenceQueryDelay = Integer.parseInt(arg[1]);
+                    } catch (NumberFormatException e) {
+                        licenceQueryDelay = DEFAULT_LICENSE_QUERY_DELAY;
+                    }
+                    if(licenceQueryDelay < MIN_LICENSE_QUERY_DELAY || licenceQueryDelay > MAX_LICENSE_QUERY_DELAY) {
+                        licenceQueryDelay = DEFAULT_LICENSE_QUERY_DELAY;
+                    }
+                    isConfigParametersPresent = true;
+                    break;
+                case "store":
+                    isStoreParameterPresent = true;
+                    break;
+            }
+        }
+
+        if(isStoreParameterPresent && isConfigParametersPresent)
+            SearchLauncherConfig.setConfig(searchLicenseServerURL, searchStartCommand, licenceQueryDelay, true);
+        else if(isConfigParametersPresent)
+            SearchLauncherConfig.setConfigParameters(searchLicenseServerURL, searchStartCommand, licenceQueryDelay, false);
+
+        if(isStartParameterPresent) {
+            searchLicenseMonitorAndStarter = new SearchLicenseMonitorAndStarter();
+            searchLicenseMonitorAndStarter.start();
+            isSearchLicenseMonitorAndStarterRun = true;
+        }
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -71,7 +123,7 @@ public class Main {
         });
         trayMenu.add(itemCheckLicenses);
 
-        itemStartStop = new MenuItem("Start");
+        itemStartStop = new MenuItem(isSearchLicenseMonitorAndStarterRun ? "Stop" : "Start");
         itemStartStop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
